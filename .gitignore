@@ -1,0 +1,6 @@
+# 확장자 class를 무시합니다
+.class
+
+
+# env 파일을 source file에 올리지 않습니다.
+.env
