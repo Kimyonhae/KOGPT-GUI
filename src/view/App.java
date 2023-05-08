@@ -1,5 +1,7 @@
 package view;
 
+import controller.JsonFileRead;
+import controller.UsersMember;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -30,6 +32,7 @@ public class App extends Application {
 
         // 크기를 구하는 class
         AppRatio ratio = new AppRatio();
+        UsersMember member = new UsersMember();
         ratio.setRatio(); // 높이와 너비를 초기화 합니다.
 
         // image Node
@@ -83,8 +86,12 @@ public class App extends Application {
                     return;
                 }
                 // login success
+
+                String responseMsg = member.vaildUser(userId.getText(), password.getText());
                 errorMessage.setFill(Color.GREEN);
-                errorMessage.setText("로그인 버튼이 눌렸습니다!");
+                errorMessage.setText(responseMsg);
+                userId.setText("");
+                password.setText("");
             }
         });
         // register button click Event
@@ -93,6 +100,8 @@ public class App extends Application {
             @Override
             public void handle(ActionEvent event) {
                 // 회원가입 gui 로 이동합니다.
+                member.storeUser(userId.getText(), password.getText());
+                JsonFileRead.readFile();
             }
         });
 

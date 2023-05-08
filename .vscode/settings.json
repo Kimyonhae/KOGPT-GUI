@@ -10,6 +10,7 @@
         "/Library/Java/JavaVirtualMachines/javafx-sdk-17.0.6/lib/javafx.graphics.jar",
         "/Library/Java/JavaVirtualMachines/javafx-sdk-17.0.6/lib/javafx.media.jar",
         "/Library/Java/JavaVirtualMachines/javafx-sdk-17.0.6/lib/javafx.swing.jar",
-        "/Library/Java/JavaVirtualMachines/javafx-sdk-17.0.6/lib/javafx.web.jar"
+        "/Library/Java/JavaVirtualMachines/javafx-sdk-17.0.6/lib/javafx.web.jar",
+        "/Library/Java/JavaVirtualMachines/javafx-sdk-17.0.6/lib/json-simple-1.1.1.jar"
     ]
 }
