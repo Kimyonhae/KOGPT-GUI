@@ -1,6 +1,9 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+
+import org.json.simple.JSONObject;
 
 import model.User;
 
@@ -15,8 +18,8 @@ public interface UsersMembersInterface {
     public void clearUsers();
 
     // User 객체에 data 넣기
-    public void storeUser(String userId, String password);
+    public User storeUser(String userId, String password);
 
     // 회원 일치 확인
-    public String vaildUser(String userId, String password);
+    public String vaildUser(String userId, String password, JSONObject users);
 }

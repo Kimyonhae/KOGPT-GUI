@@ -8,11 +8,13 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class App extends Application {
+public class Test extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
-
         BorderPane root;
         try {
             root = (BorderPane) FXMLLoader.load(getClass().getResource("login.fxml"));
@@ -24,7 +26,4 @@ public class App extends Application {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        launch(args);
-    }
 }

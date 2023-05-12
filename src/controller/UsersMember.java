@@ -2,7 +2,8 @@ package controller;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
+
+import org.json.simple.JSONObject;
 
 import model.User;
 
@@ -19,13 +20,16 @@ public class UsersMember implements UsersMembersInterface {
 
     // data 저장
     @Override
-    public void storeUser(String userId, String password) {
+    public User storeUser(String userId, String password) {
         User user = new User(); // User 객체를 초기화 합니다.
-        user.setUser(++increaseId, userId, password); // user data 값을 저장합니다.
-        users.put(increaseId, user);
-        for (Entry<Long, User> entrySet : users.entrySet()) {
-            System.out.println(entrySet.getKey() + " : " + entrySet.getValue()); // test code
+        // error 사항은 계속 build 할때 key 값이 1로 중복되어서 나옴.
+        // 고치기 위해서 build할때 json에서 key값을 받아오는게 좋아보임.
+        JSONObject json = JsonFileRead.readFile();
+        if (json != null) {
+            increaseId = json.size(); // json의 객체 수의 따라 값을 넣어줍니다.
         }
+        user.setUser(++increaseId, userId, password); // user data 값을 저장합니다.
+        return user;
     }
 
     // 데이터 한번에 삭제
@@ -48,26 +52,20 @@ public class UsersMember implements UsersMembersInterface {
     }
 
     @Override
-    public String vaildUser(String userId, String password) {
-        // test login method
-        User user1 = new User();
-        user1.setUser(1, "yoho1019", "yoho10190@");
-        users.put(1L, user1);
-        User user2 = new User();
-        user2.setUser(2, "yoho1018", "yoho10190@");
-        users.put(2L, user2);
-        User user3 = new User();
-        user3.setUser(3, "yoho1017", "yoho10190@");
-        users.put(3L, user3);
-        users.forEach((id, value) -> {
-            if (value.getUserId().equals(userId) || value.getPassword().equals(password)) {
-                // 아이디가 같은지 확인하는 조건문입니다.
-                msg = "메세지 보내기 성공입니다.";
+    public String vaildUser(String userId, String password, JSONObject users) {
+
+        for (int i = 1; i <= users.size(); i++) {
+            String parsingId = Integer.toString(i);
+            JSONObject user = (JSONObject) users.get(parsingId);
+            String vaildUserId = user.get("userId").toString();
+            String vaildPassword = user.get("password").toString();
+            if (vaildPassword.equals(password) && vaildUserId.equals(userId)) {
+                // return을 통해 filtering를 하며 user가 맞는지 검사합니다.
+                return msg = "메세지 보내기 성공입니다.";
             } else {
-                msg = "아디이와 비밀번호가 맞는지 확인하세요";
-                return;
+                msg = "아디이와 비밀번호가 맞는지 혹은 있는지 확인하세요";
             }
-        });
+        }
         return msg;
     }
 
