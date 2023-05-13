@@ -4,20 +4,23 @@ package model;
 public class KogptModel {
     String id;
     double template;
+    String content;
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getContent() {
+        return content;
     }
 
     public double getTemplate() {
         return template;
     }
 
-    public void setTemplate(double template) {
+    public void setGPT(String id, double template, String content) {
+        this.id = id;
         this.template = template;
+        this.content = content;
     }
 }
