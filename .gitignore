@@ -3,4 +3,4 @@
 
 
 # env 파일을 source file에 올리지 않습니다.
-.env
+env.txt
