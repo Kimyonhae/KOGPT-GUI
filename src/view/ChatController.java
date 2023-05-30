@@ -3,11 +3,7 @@ package view;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import controller.CustomListCeil;
 import controller.JSonFillter;
 import controller.JsonApiGPT;
@@ -55,15 +51,17 @@ public class ChatController {
             listview.setCellFactory(value -> new CustomListCeil<>());
             listview.getItems().add(message); // 채팅을 추가합니다.
             chatData.clear(); // 채팅의 내용을 지웁니다.
+
+            // 채팅 전송 후 화면 업데이트
             KogptModel gptModel = new KogptModel();
-            gptModel.setGPT(0.3, message);
+            gptModel.setGPT(0.4, message);
+
             JSONObject data = new JSONObject();
             data.put("prompt", gptModel.getContent());
-            data.put("max_tokens", 120);
-            data.put("n", 1);
+            data.put("max_tokens", 128);
+            data.put("temperature", gptModel.getTemplate());
 
             String requestData = data.toJSONString();
-            System.out.println(requestData);
             JSONObject response = JsonApiGPT.apiKoGPT(requestData);
             // json 파일을 매개변수로 해서 key:"text" 값에 있는 값을 String 값으로 가져옵니다.
             String textData = JSonFillter.jsonToString(response);
@@ -78,4 +76,5 @@ public class ChatController {
         assert logout != null : "fx:id=\"logout\" was not injected: check your FXML file 'chat.fxml'.";
         assert sendBtn != null : "fx:id=\"sendBtn\" was not injected: check your FXML file 'chat.fxml'.";
     }
+
 }

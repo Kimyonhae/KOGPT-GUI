@@ -11,7 +11,6 @@ public class JSonFillter {
             JSONArray generations = (JSONArray) response.get("generations");
             JSONObject textData = (JSONObject) generations.get(0);
             result = (String) textData.get("text").toString();
-
             return result;
         } catch (Exception e) {
             e.printStackTrace();

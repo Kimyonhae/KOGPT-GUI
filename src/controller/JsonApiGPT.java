@@ -5,9 +5,7 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.URL;
-import java.text.ParseException;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -66,7 +64,6 @@ public class JsonApiGPT {
                     response.append(line);
                 }
                 reader.close();
-                System.out.println(response.toString());
                 // 응답의 내용을 JSONObject로 변환 합니다.
                 JSONParser parser = new JSONParser();
                 JSONObject json = (JSONObject) parser.parse(response.toString());
@@ -86,7 +83,7 @@ public class JsonApiGPT {
     }
 }
 
-// test
+// test code
 // JSONParser parser = new JSONParser();
 // JSONObject json = null;
 // try {

@@ -6,14 +6,6 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Test",
-      "request": "launch",
-      "mainClass": "view.Test",
-      "projectName": "kogpt-gui_543389d3",
-      "vmArgs": "--module-path /Library/Java/JavaVirtualMachines/javafx-sdk-17.0.6/lib --add-modules javafx.controls,javafx.fxml"
-    },
-    {
-      "type": "java",
       "name": "Current File",
       "request": "launch",
       "mainClass": "${file}"

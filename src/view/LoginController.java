@@ -60,6 +60,7 @@ public class LoginController {
             // event는 fxml 파일의 event 핸들러를 그대로 받습니다. ex)onAction
             loginSuccess(event, "chat.fxml");
         }
+
         errorMessage.setText(responseMsg);
         userField.setText("");
         passwordField.setText("");
