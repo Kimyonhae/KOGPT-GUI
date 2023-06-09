@@ -63,7 +63,7 @@ public class UsersMember implements UsersMembersInterface {
                 // return을 통해 filtering를 하며 user가 맞는지 검사합니다.
                 return msg = "메세지 보내기 성공입니다.";
             } else {
-                msg = "아디이와 비밀번호가 맞는지 혹은 있는지 확인하세요";
+                msg = "아이디와 비밀번호가 맞는지 혹은 있는지 확인하세요";
             }
         }
         return msg;
